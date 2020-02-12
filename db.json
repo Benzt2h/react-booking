@@ -1,0 +1,40 @@
+{
+  "tableList": [
+    {
+      "id": 1,
+      "capacity": 1,
+      "status": true,
+      "name": ""
+    },
+    {
+      "id": 2,
+      "capacity": 1,
+      "status": true,
+      "name": ""
+    },
+    {
+      "id": 3,
+      "capacity": 1,
+      "status": true,
+      "name": ""
+    },
+    {
+      "id": 4,
+      "capacity": 3,
+      "status": true,
+      "name": ""
+    },
+    {
+      "id": 5,
+      "capacity": 3,
+      "status": true,
+      "name": ""
+    },
+    {
+      "id": 6,
+      "capacity": 3,
+      "status": true,
+      "name": ""
+    }
+  ]
+}

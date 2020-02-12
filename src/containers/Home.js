@@ -4,38 +4,37 @@ import Header from '../components/Header';
 import Table from '../components/Table';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { tableFetchs } from '../actions';
 
 class Home extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { tableList: "" }
         this.bookingTable = this.bookingTable.bind(this)
         this.unBookingTable = this.unBookingTable.bind(this)
     }
 
     componentDidMount() {
-        axios.get("http://localhost:3001/tableList").then(res => {
-            { this.setState({ tableList: res.data }) }
-        })
+        this.props.tableFetchs();
     }
 
     renderTable(capacity) {
-        if (this.state.tableList && this.state.tableList.length > 0) {
-            return this.state.tableList.map(table => {
+        if (this.props.tableList && this.props.tableList.length > 0) {
+            return this.props.tableList.map(table => {
                 if (table.capacity == capacity) {
-                    return <Table key={table.tableId} {...table} bookingTable={this.bookingTable} unBookingTable={this.unBookingTable} />
+                    return <Table key={table.id} {...table} bookingTable={this.bookingTable} unBookingTable={this.unBookingTable} />
                 }
             })
         }
     }
 
-    bookingTable(tableId) {
-        this.props.history.push('booking/' + tableId);
+    bookingTable(id) {
+        this.props.history.push('booking/' + id);
     }
 
-    unBookingTable(tableId) {
-        this.props.history.push('unbooking/' + tableId);
+    unBookingTable(id) {
+        this.props.history.push('unbooking/' + id);
     }
 
     render() {
@@ -56,4 +55,8 @@ class Home extends Component {
     }
 }
 
-export default withRouter(Home);
+function mapStateToProps(state) {
+    return { tableList: state.tables }
+}
+
+export default withRouter(connect(mapStateToProps, { tableFetchs })(Home));
