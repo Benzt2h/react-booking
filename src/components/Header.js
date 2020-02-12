@@ -9,7 +9,7 @@ class Header extends Component {
                         <h1 className="text-primary">จองโต๊ะร้านอาหาร</h1>
                     </div>
                     <div className="col-md-4 text-right">
-                        <h1 className="text-primary">จองโต๊ะร้านอาหาร</h1>
+                        login
                     </div>
                 </div>
             </div>
