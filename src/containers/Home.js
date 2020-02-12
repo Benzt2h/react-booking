@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import TableList from '../components/TableList';
+//import TableList from '../components/TableList';
 import Table from '../components/Table';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class Home extends Component {
 
     constructor(props) {
         super(props)
         this.state = { tableList: "" }
+        this.bookingTable = this.bookingTable.bind(this)
+        this.unBookingTable = this.unBookingTable.bind(this)
     }
 
     componentDidMount() {
-        this.setState({
-            tableList: [
-                { tableId: 1, capacity: 1, status: true },
-                { tableId: 2, capacity: 1, status: false },
-                { tableId: 3, capacity: 1, status: true },
-                { tableId: 4, capacity: 3, status: true },
-                { tableId: 5, capacity: 3, status: false },
-                { tableId: 6, capacity: 3, status: false }
-            ]
+        axios.get("http://localhost:3001/tableList").then(res => {
+            { this.setState({ tableList: res.data }) }
         })
     }
 
@@ -27,10 +24,18 @@ class Home extends Component {
         if (this.state.tableList && this.state.tableList.length > 0) {
             return this.state.tableList.map(table => {
                 if (table.capacity == capacity) {
-                    return <Table key={table.tableId} {...table} />
+                    return <Table key={table.tableId} {...table} bookingTable={this.bookingTable} unBookingTable={this.unBookingTable} />
                 }
             })
         }
+    }
+
+    bookingTable(tableId) {
+        this.props.history.push('booking/' + tableId);
+    }
+
+    unBookingTable(tableId) {
+        this.props.history.push('unbooking/' + tableId);
     }
 
     render() {
@@ -51,4 +56,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withRouter(Home);

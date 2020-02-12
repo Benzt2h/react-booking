@@ -8,7 +8,7 @@ class Table extends Component {
                 <div>
                     <h4>โต๊ะ {tableId}</h4>
                     <h4>สำหรับ 1-2 คน</h4>
-                    <button className="btn btn-primary btn-block" style={{ height: 100 }} onClick={() => console.log(tableId)}>จองโต๊ะ</button>
+                    <button className="btn btn-primary btn-block" style={{ height: 100 }} onClick={() => this.props.bookingTable(this.props.tableId)}>จองโต๊ะ</button>
                 </div>
             )
         } else if (capacity == 3) {
@@ -16,7 +16,7 @@ class Table extends Component {
                 <div>
                     <h4>โต๊ะ {tableId}</h4>
                     <h4>สำหรับ 3-4 คน</h4>
-                    <button className="btn btn-primary btn-block" style={{ height: 100 }} onClick={() => console.log(tableId)}>จองโต๊ะ</button>
+                    <button className="btn btn-primary btn-block" style={{ height: 100 }} onClick={() => this.props.bookingTable(this.props.tableId)}>จองโต๊ะ</button>
                 </div>
             )
         }
@@ -28,7 +28,7 @@ class Table extends Component {
                 <div>
                     <h4>โต๊ะ {tableId}</h4>
                     <h4>โต๊ะถูกจองแล้ว</h4>
-                    <button className="btn btn-danger btn-block" style={{ height: 100 }} onClick={() => console.log(tableId)}>ยกเลิกการจอง</button>
+                    <button className="btn btn-danger btn-block" style={{ height: 100 }} onClick={() => this.props.unBookingTable(this.props.tableId)}>ยกเลิกการจอง</button>
                 </div>
             )
         } else if (capacity == 3) {
@@ -36,7 +36,7 @@ class Table extends Component {
                 <div>
                     <h4>โต๊ะ {tableId}</h4>
                     <h4>โต๊ะถูกจองแล้ว</h4>
-                    <button className="btn btn-danger btn-block" style={{ height: 100 }} onClick={() => console.log(tableId)}>ยกเลิกการจอง</button>
+                    <button className="btn btn-danger btn-block" style={{ height: 100 }} onClick={() => this.props.unBookingTable(this.props.tableId)}>ยกเลิกการจอง</button>
                 </div>
             )
         }
